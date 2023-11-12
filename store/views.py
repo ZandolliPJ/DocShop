@@ -30,6 +30,13 @@ def add_to_cart(request, slug):
     return redirect(reverse("product", kwargs={"slug": slug}))
 
 
+def cart(request):
+
+    cart = get_object_or_404(Cart, user=request.user)
+
+    return render(request, 'store/cart.html', context={"orders": cart.orders.all})
+
+
 
 
 
